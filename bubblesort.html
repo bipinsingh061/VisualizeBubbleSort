@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sort test</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+Enter Size of Array : 
+
+<input type="text" name="text" v-model="n" v-on:keyup.enter="generate">
+<button v-on:click="actualsort()">Sort Using Bubble Sort</button>
+
+
+<div id="myDiv">
+<div v-for="item in ar">
+	 <div v-bind:style="{ 'background-color' : myc , 'width' : item+'px'  ,
+	 'height' : 4+'px'}">
+	 </div>
+	 <div v-bind:style="{ 'height' : 2+'px'  , 'color' : spacecolor}">.</div>
+</div>
+</div>
+
+<br>
+<br>
+
+
+</div>
+
+<script>
+	var app = new Vue({
+		el : "#app",
+		data : {
+			ar : [],
+			n  : 232,
+			myc : 'red',
+			i : 0 ,
+			j : 0 ,
+			spacecolor : 'white'
+		},
+		methods : {
+			generate()
+			{
+				var test=[]
+				for(var i =0 ; i<this.n ; ++i)
+					test.push(40*(Math.random()*10+1));
+				this.ar=test;
+				
+			},
+			sort()
+			{
+				var test=[] ;
+				test=this.ar ;
+				for(; this.i<this.n-1 ; this.i++)
+				{
+					for(; this.j<this.n-this.i-1 ;this.j++)
+					{
+						if(test[this.j]>test[this.j+1])
+						{
+							var temp = test[this.j];
+							Vue.set(app.ar,this.j,test[this.j+1]);
+							Vue.set(app.ar,this.j+1,temp);
+							sleep(4);
+						}
+
+					}
+					
+				}
+
+				// Vue.set(app.ar,0,8);
+			},
+			actualsort()
+			{
+				setInterval(() => {
+			      this.sort();
+			      this.i=0;
+			      this.j=0;
+			    }, 4)
+			}
+
+		},
+
+		mounted()
+		{
+			var test=[]
+				for(var i =0 ; i<this.n ; ++i)
+					test.push(40*(Math.random()*10+1));
+				this.ar=test; 
+		}
+	})
+</script>
+
+<style>
+
+/*div {
+  width: 300px;
+  height: 100px;
+  background-color: yellow;
+  border: 1px solid black;
+}*/
+
+div#myDiv {
+  -ms-transform: rotate(-90deg); /* IE 9 */
+  transform: rotate(-90deg); /* Standard syntax */
+  width: 480px;
+  height: 580px;
+}
+</style>
+
+</body>
+</html>
